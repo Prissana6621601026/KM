@@ -36,7 +36,7 @@
         <h2>Latest News</h2>
         <div class="news-list">
             <article class="news-item">
-                <img class="news-image" src="assets/images/5.png" alt="News 1">
+                <img class="news-image" src="assets/images/5.png" alt="News 1" data-full="assets/images/5.png">
                 <div class="news-body">
                     <p class="news-meta">Feb 10, 2026</p>
                     <h3>ประกาศภายใน : การอบรมเชิงปฏิบัติการหลักสูตร </h3>
@@ -58,10 +58,48 @@
         <a class="btn" href="contact.html">Contact Us</a>
     </section>
 
+    <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="image-modal__close" type="button" aria-label="Close image">×</button>
+        <img class="image-modal__img" src="" alt="Full news image">
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <p>© 2026 Blue Valley. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        const newsImage = document.querySelector(".news-image");
+        const modal = document.getElementById("imageModal");
+        const modalImg = modal.querySelector(".image-modal__img");
+        const closeBtn = modal.querySelector(".image-modal__close");
+
+        const openModal = () => {
+            const fullSrc = newsImage.getAttribute("data-full") || newsImage.src;
+            modalImg.src = fullSrc;
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+        };
+
+        const closeModal = () => {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+            modalImg.src = "";
+        };
+
+        newsImage.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && modal.classList.contains("is-open")) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 
 </html>

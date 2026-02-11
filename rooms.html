@@ -30,32 +30,77 @@
         <h2>Room Types</h2>
         <div class="room-cards">
             <div class="room-card">
-                <img src="assets/images/1.jpeg" alt="Room 1">
+                <button class="room-booking-toggle" type="button" data-room="Standard Room" aria-expanded="false">
+                    <img src="assets/images/1.jpeg" alt="Room 1">
+                    <span class="room-booking-label">Book this room</span>
+                </button>
                 <h3>Standard Room</h3>
                 <p>2,000 baht</p>
+                <div class="room-booking-panel" hidden>
+                    <h4>Book Standard Room</h4>
+                    <form class="room-booking-form">
+                        <input type="hidden" name="room" value="Standard Room">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                        <input type="date" name="date" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
             </div>
             <div class="room-card">
-                <img src="assets/images/2.jpeg" alt="Room 2">
+                <button class="room-booking-toggle" type="button" data-room="Deluxe Room" aria-expanded="false">
+                    <img src="assets/images/2.jpeg" alt="Room 2">
+                    <span class="room-booking-label">Book this room</span>
+                </button>
                 <h3>Deluxe Room</h3>
                 <p>2,500 baht</p>
+                <div class="room-booking-panel" hidden>
+                    <h4>Book Deluxe Room</h4>
+                    <form class="room-booking-form">
+                        <input type="hidden" name="room" value="Deluxe Room">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                        <input type="date" name="date" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
             </div>
             <div class="room-card">
-                <img src="assets/images/3.jpeg" alt="Room 3">
+                <button class="room-booking-toggle" type="button" data-room="Suite Room" aria-expanded="false">
+                    <img src="assets/images/3.jpeg" alt="Room 3">
+                    <span class="room-booking-label">Book this room</span>
+                </button>
                 <h3>Suite Room</h3>
                 <p>3,000 baht</p>
+                <div class="room-booking-panel" hidden>
+                    <h4>Book Suite Room</h4>
+                    <form class="room-booking-form">
+                        <input type="hidden" name="room" value="Suite Room">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                        <input type="date" name="date" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="booking container">
-        <h2>Book Your Stay</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="E-mail" required>
-            <input type="date" required>
-            <button type="submit" class="btn">Submit</button>
-        </form>
-    </section>
+    <script>
+        const bookingToggles = document.querySelectorAll(".room-booking-toggle");
+
+        bookingToggles.forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+                const card = toggle.closest(".room-card");
+                const panel = card.querySelector(".room-booking-panel");
+                const isOpen = !panel.hasAttribute("hidden");
+
+                panel.toggleAttribute("hidden", isOpen);
+                card.classList.toggle("is-booking-open", !isOpen);
+                toggle.setAttribute("aria-expanded", String(!isOpen));
+            });
+        });
+    </script>
 
     <footer class="footer">
         <p>© 2026 Blue Valley. All Rights Reserved.</p>

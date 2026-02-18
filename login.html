@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Valley | Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Blue Valley</h1>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="rooms.html">Rooms</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a class="active" href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero hero--sub">
+        <div class="hero-content">
+            <h2>Member Login</h2>
+            <p>เข้าสู่ระบบเพื่อจัดการการจองและสิทธิพิเศษของคุณ</p>
+        </div>
+    </section>
+
+    <section class="login container">
+        <div class="login-layout">
+            <div class="login-panel">
+                <h2>ยินดีต้อนรับกลับมา</h2>
+                <p class="login-subtitle">หน้านี้ไม่มีการจำกัดจำนวนครั้งที่พยายามเข้าสู่ระบบ</p>
+                <form class="login-form" novalidate>
+                    <label for="email">อีเมล</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+                    <label for="password">รหัสผ่าน</label>
+                    <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required>
+
+                    <button type="submit" class="btn">เข้าสู่ระบบ</button>
+                    <div class="login-meta">
+                        <a href="#">ลืมรหัสผ่าน?</a>
+                        <a href="#">สมัครสมาชิกใหม่</a>
+                    </div>
+                    <p class="login-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+            <div class="login-art" aria-hidden="true">
+                <div class="login-art__content">
+                    <h3>Blue Valley Privilege</h3>
+                    <p>รับข้อเสนอพิเศษและการจัดการการเข้าพักในที่เดียว</p>
+                    <ul>
+                        <li>ดูประวัติการจองแบบเรียลไทม์</li>
+                        <li>คูปองส่วนลดเฉพาะสมาชิก</li>
+                        <li>บริการช่วยเหลือ 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Blue Valley. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const loginForm = document.querySelector(".login-form");
+        const statusEl = document.querySelector(".login-status");
+
+        const setStatus = (message, type) => {
+            statusEl.textContent = message;
+            statusEl.classList.remove("is-success", "is-error");
+            if (type) {
+                statusEl.classList.add(type === "success" ? "is-success" : "is-error");
+            }
+        };
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const email = loginForm.elements.email.value.trim();
+            const password = loginForm.elements.password.value;
+
+            if (!email || !password) {
+                setStatus("กรุณากรอกอีเมลและรหัสผ่านให้ครบ", "error");
+                return;
+            }
+
+            setStatus("เข้าสู่ระบบสำเร็จ (เดโม)", "success");
+            loginForm.reset();
+        });
+    </script>
+</body>
+
+</html>
